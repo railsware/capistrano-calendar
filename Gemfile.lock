@@ -1,0 +1,47 @@
+PATH
+  remote: .
+  specs:
+    capistrano-calendar (0.0.1)
+      capistrano (>= 2.5.5)
+      gdata (>= 1.1.0)
+      json
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    capistrano (2.9.0)
+      highline
+      net-scp (>= 1.0.0)
+      net-sftp (>= 2.0.0)
+      net-ssh (>= 2.0.14)
+      net-ssh-gateway (>= 1.1.0)
+    daemons (1.1.4)
+    diff-lcs (1.1.2)
+    gdata (1.1.2)
+    highline (1.6.2)
+    json (1.6.1)
+    net-scp (1.0.4)
+      net-ssh (>= 1.99.1)
+    net-sftp (2.0.5)
+      net-ssh (>= 2.0.9)
+    net-ssh (2.2.1)
+    net-ssh-gateway (1.1.0)
+      net-ssh (>= 1.99.1)
+    rspec (2.6.0)
+      rspec-core (~> 2.6.0)
+      rspec-expectations (~> 2.6.0)
+      rspec-mocks (~> 2.6.0)
+    rspec-core (2.6.4)
+    rspec-expectations (2.6.0)
+      diff-lcs (~> 1.1.2)
+    rspec-mocks (2.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  capistrano-calendar!
+  daemons (= 1.1.4)
+  gdata (= 1.1.2)
+  json (= 1.6.1)
+  rspec (= 2.6.0)

@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'capistrano/calendar'
+
+Capistrano::Calendar::Runner.new(ARGV).run!
