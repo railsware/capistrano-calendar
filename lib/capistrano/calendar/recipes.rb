@@ -15,7 +15,7 @@ Capistrano::Configuration.instance.load do
       configuration = Capistrano::Calendar::Configuration.collect(self)
       string = Capistrano::Calendar::Configuration.encode(configuration)
 
-      run("capistrano-calendar create_event #{string}", calendar_runner)
+      run("capistrano-calendar _#{Capistrano::Calendar::VERSION}_ create_event #{string}", calendar_runner)
     end
 
   end

@@ -1,3 +1,5 @@
+require 'capistrano/calendar/version'
+
 module Capistrano
   module Calendar
     autoload :Client,         'capistrano/calendar/client'
