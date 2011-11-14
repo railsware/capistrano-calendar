@@ -46,7 +46,7 @@ Bold means required options. Value in brackets means default value.
 Calendar event creation will be executed by default on the one of application servers (specified in :app roles)
 You can change this behavior via *calendar_runner* option. Examples:
 
-    set(:calendar_runner, { :roles => :calendar_notifier, :once => true )
+    set(:calendar_runner, { :roles => :calendar_notifier, :once => true })
     # or
     set(:calendar_runner, { :hosts => 'notification.example.com' })
 
@@ -58,21 +58,21 @@ Be sure to pass `:once => true` option if you use *:roles* !
     set :calendar_username, 'vasya.pupkin@my.company.com'
     set :calendar_password, '123456'
 
-    set :calendar_name      { stage }
-    set :calendar_summary   { "" }
+    set(:calendar_name)      { stage }
+    set(:calendar_summary)   { "" }
     set :calendar_timezone, 'UTC'
-    set :calendar_color,    { stage == 'production' ? '#ff000' : '#00ff00' }
+    set(:calendar_color),    { stage == 'production' ? '#ff000' : '#00ff00' }
 
-    set :calendar_event_summary { "Bla" }
-    set :calendar_event_time { Time.now }
+    set(:calendar_event_summary) { "Bla" }
+    set(:calendar_event_time) { Time.now }
 
     after 'deploy' do
-      set :calendar_event_title "[Deployed] #{application} #{branch}: #{real_revision}"
+      set :calendar_event_title, "[Deployed] #{application} #{branch}: #{real_revision}"
       top.calendar.create_event
     end
 
     after 'deploy:rollback' do
-      set :calendar_event_title "[Rollback] #{application} #{branch}: #{real_revision}"
+      set :calendar_event_title, "[Rollback] #{application} #{branch}: #{real_revision}"
       top.calendar.create_event
     end
 
@@ -80,12 +80,12 @@ Be sure to pass `:once => true` option if you use *:roles* !
     # Extra configurations if you are using capistrano-patch:
     #
     after 'patch:apply' do
-      set :calendar_event_title "[Pathed] #{application} #{branch}: #{patch_strategy.revision_to}"
+      set :calendar_event_title, "[Pathed] #{application} #{branch}: #{patch_strategy.revision_to}"
       calendar_client.create_event
     end
 
     after 'patch:revert' do
-      set :calendar_event_title "[Patch rollback] #{application} #{branch}: #{patch_strategy.revision_from}"
+      set :calendar_event_title, "[Patch rollback] #{application} #{branch}: #{patch_strategy.revision_from}"
       top.calendar.create_event
     end
 
