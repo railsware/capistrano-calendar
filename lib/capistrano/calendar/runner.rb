@@ -41,7 +41,7 @@ module Capistrano
 
           @client = Capistrano::Calendar::Client.new(@configuration)
       
-          daemonize { create_event }
+          create_event
         else
           abort parser.help
         end
@@ -54,35 +54,6 @@ module Capistrano
         client.authenticate
         client.create_event
       end
-
-      def daemonize
-        Process.fork do
-          # Detach the child process from the parent's session.
-          Process.setsid
-
-          # Re-fork. This is recommended for System V-based
-          # system as it guarantees that the daemon is not a
-          # session leader, which prevents it from aquiring
-          # a controlling terminal under the System V rules.
-          exit if fork
-
-          # Rename the process
-          $0 = "capistrano-calendar"
-
-          # Flush all buffers
-          $stdout.sync = $stderr.sync = true
-
-          # Set all standard files to `/dev/null/` in order
-          # to be sure that any output from the daemon will
-          # not appear in any terminals.
-          $stdin.reopen("/dev/null")
-          $stdout.reopen("/tmp/capistrano-calendar.stdout")
-          $stderr.reopen("/tmp/capistrano-calendar.stderr")
-
-          yield
-        end
-      end
-
     end
   end
 end
