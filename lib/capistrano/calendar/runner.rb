@@ -40,8 +40,12 @@ module Capistrano
           @configuration.is_a?(Hash) or abort("Bad configuration given")
 
           @client = Capistrano::Calendar::Client.new(@configuration)
-      
-          daemonize { create_event }
+
+          if @configuration[:calendar_foreground]
+            create_event
+          else
+            daemonize { create_event }
+          end
         else
           abort parser.help
         end
@@ -56,6 +60,8 @@ module Capistrano
       end
 
       def daemonize
+        logfile = @configuration[:calendar_logfile] || "/tmp/capistrano-calendar-#{Process.pid}.log"
+
         Process.fork do
           # Detach the child process from the parent's session.
           Process.setsid
@@ -76,11 +82,13 @@ module Capistrano
           # to be sure that any output from the daemon will
           # not appear in any terminals.
           $stdin.reopen("/dev/null")
-          $stdout.reopen("/tmp/capistrano-calendar.stdout")
-          $stderr.reopen("/tmp/capistrano-calendar.stderr")
+          $stdout.reopen(logfile, "a")
+          $stderr.reopen(logfile, "a")
 
           yield
         end
+
+        puts "Logging to: #{logfile}"
       end
 
     end

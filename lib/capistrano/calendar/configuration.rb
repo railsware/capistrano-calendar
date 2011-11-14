@@ -7,6 +7,9 @@ module Capistrano
 
       def self.collect(hash)
         [
+          :calendar_logfile,
+          :calendar_foreground,
+
           :calendar_service,
           :calendar_username,
           :calendar_password,
