@@ -55,8 +55,13 @@ module Capistrano
       protected
 
       def create_event
+        verbose("Creating event with configuration: #{@configuration.inspect}")
+
         client.authenticate
-        client.create_event
+        event = client.create_event
+
+        verbose("Created event: #{event.inspect}")
+        event
       end
 
       def daemonize
@@ -91,6 +96,9 @@ module Capistrano
         puts "Logging to: #{logfile}"
       end
 
+      def verbose(message)
+        puts(message) if @configuration[:calendar_verbose]
+      end
     end
   end
 end

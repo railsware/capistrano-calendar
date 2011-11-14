@@ -7,6 +7,7 @@ module Capistrano
 
       def self.collect(hash)
         [
+          :calendar_verbose,
           :calendar_logfile,
           :calendar_foreground,
 
@@ -24,7 +25,7 @@ module Capistrano
           :calendar_event_summary,
           :calendar_event_location,
           :calendar_event_time,
-          :calendar_event_status
+          :calendar_event_status,
         ].inject({}) { |result, key|
           result[key] = hash[key] if hash.exists?(key)
           result

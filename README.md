@@ -25,6 +25,7 @@ Capistrano recipe should be used in some :after hooks (e.g. after deploy). Recip
 
 ## Calendar configuration
 
+* *:calendar_verbose (nil) - if true display calendar data actions
 * *:calendar_logfile (/tmp/capistrano-calendar-PID.log) - calendar log
 * *:calendar_foreground (nil) -  don't daemonize calendar process if true
 * *:calendar_service* (:google) - calendar service to use e.g. ':google'
