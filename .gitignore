@@ -2,3 +2,6 @@
 .bundle
 .credentials.yml
 pkg/*
+bin
+.rspec
+.rvmrc
