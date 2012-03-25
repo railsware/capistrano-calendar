@@ -70,12 +70,12 @@ Be sure to pass `:once => true` option if you use *:roles* !
     set(:calendar_event_time) { Time.now }
 
     after 'deploy' do
-      set :calendar_event_title, "[Deployed] #{application} #{branch}: #{real_revision}"
+      set :calendar_event_name, "[Deployed] #{application} #{branch}: #{real_revision}"
       top.calendar.create_event
     end
 
     after 'deploy:rollback' do
-      set :calendar_event_title, "[Rollback] #{application} #{branch}: #{real_revision}"
+      set :calendar_event_name, "[Rollback] #{application} #{branch}: #{real_revision}"
       top.calendar.create_event
     end
 
@@ -83,12 +83,12 @@ Be sure to pass `:once => true` option if you use *:roles* !
     # Extra configurations if you are using capistrano-patch:
     #
     after 'patch:apply' do
-      set :calendar_event_title, "[Pathed] #{application} #{branch}: #{patch_strategy.revision_to}"
+      set :calendar_event_name, "[Pathed] #{application} #{branch}: #{patch_strategy.revision_to}"
       calendar_client.create_event
     end
 
     after 'patch:revert' do
-      set :calendar_event_title, "[Patch rollback] #{application} #{branch}: #{patch_strategy.revision_from}"
+      set :calendar_event_name, "[Patch rollback] #{application} #{branch}: #{patch_strategy.revision_from}"
       top.calendar.create_event
     end
 
